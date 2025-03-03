@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atul Vishwakarma | Software Developer</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --gray: #6c757d;
+            --gray-light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Modern CSS Grid Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .grid {
+            display: grid;
+            gap: 30px;
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        /* Header with glass morphism effect */
+        header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section with modern design */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--success));
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--gray);
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* About Section */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-img {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        /* Experience Section with cards */
+        .experience-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .experience-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+        }
+        
+        .experience-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .experience-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .experience-card p.date {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .experience-card ul {
+            list-style-type: none;
+        }
+        
+        .experience-card ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .experience-card ul li::before {
+            content: '→';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-category {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+        }
+        
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-pill {
+            background: var(--gray-light);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-pill:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Education Section */
+        .education-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 50px;
+        }
+        
+        .education-container::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: var(--primary);
+            left: 15px;
+            top: 0;
+        }
+        
+        .education-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .education-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--primary);
+            left: -43px;
+            top: 5px;
+        }
+        
+        .education-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .education-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .education-item p {
+            color: var(--gray);
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .contact-info {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info p i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Atul.dev</a>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#education">Education</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm <span>Atul Vishwakarma</span></h1>
+                <p>A results-driven AI and Python Developer with expertise in machine learning models, automation workflows, and cloud technologies. Building scalable and efficient solutions.</p>
+                <a href="#contact" class="btn">Get In Touch</a>
+                <a href="#experience" class="btn btn-outline">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="grid grid-2">
+                <div class="about-img">
+                    <img src="/api/placeholder/500/500" alt="Atul Vishwakarma">
+                </div>
+                <div class="about-text">
+                    <h3>Software Developer</h3>
+                    <p>Results-driven AI and Python Developer with a proven track record in building machine learning models, optimizing automation workflows, and integrating AI solutions for business growth. Skilled in Python, AWS, and low-code platforms like Power Apps, with a strong commitment to continuous learning and delivering scalable, efficient solutions.</p>
+                    <p>I believe in using technology to solve real-world problems and am passionate about creating solutions that make a difference. My experience spans across cloud engineering, automation, and low-code development, giving me a versatile skill set to tackle complex challenges.</p>
+                    <a href="#contact" class="btn">Let's Connect</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-container">
+                <div class="experience-card">
+                    <h3>Python Developer Intern</h3>
+                    <h4>DevQA Expert Solution Private Limited</h4>
+                    <p class="date">01/2025 - Present | Indore, India</p>
+                    <ul>
+                        <li>Designed and implemented custom Python libraries to automate complex workflows, resulting in a 30% increase in operational efficiency.</li>
+                        <li>Enhanced code quality by implementing rigorous unit testing and debugging processes, reducing production bugs by 25%.</li>
+                        <li>Optimized application performance with efficient algorithms and data structures.</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-card">
+                    <h3>Cloud Engineer</h3>
+                    <h4>Cloudblitz | Powered By Greamio</h4>
+                    <p class="date">01/2024 - 12/2024 | Indore, India</p>
+                    <ul>
+                        <li>Mastered key AWS services (IAM, S3, VPC, RDS, CloudWatch) to deploy and manage scalable cloud infrastructure, improving system reliability by 20%.</li>
+                        <li>Effective in Linux system management for server optimization.</li>
+                        <li>Leveraged Core Python to automate workflows, reducing manual task time by 40%.</li>
+                        <li>Knowledgeable in Git for version control and collaborative development.</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-card">
+                    <h3>Power Apps Developer</h3>
+                    <h4>Bitsquad Software</h4>
+                    <p class="date">01/2023 - 10/2023 | Indore, India</p>
+                    <ul>
+                        <li>Developed custom Power Apps solutions with intuitive UI/UX designs, streamlining workflows and increasing team productivity by 35%.</li>
+                        <li>SharePoint Integration: Managed data using SharePoint Lists and Libraries, enabling seamless integrations for business processes.</li>
+                        <li>Automated repetitive business processes using Power Automate, reducing manual effort by 50% and improving operational efficiency.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming/Scripting</h3>
+                    <div class="skills-list">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">Git</span>
+                        <span class="skill-pill">Bash Scripting</span>
+                        <span class="skill-pill">Java (Basic)</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Cloud Technologies</h3>
+                    <div class="skills-list">
+                        <span class="skill-pill">AWS</span>
+                        <span class="skill-pill">Docker</span>
+                        <span class="skill-pill">IAM</span>
+                        <span class="skill-pill">S3</span>
+                        <span class="skill-pill">VPC</span>
+                        <span class="skill-pill">RDS</span>
+                        <span class="skill-pill">CloudWatch</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>AI</h3>
+                    <div class="skills-list">
+                        <span class="skill-pill">Prompt Engineering</span>
+                        <span class="skill-pill">Machine Learning</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Low-Code Platforms</h3>
+                    <div class="skills-list">
+                        <span class="skill-pill">Power Apps</span>
+                        <span class="skill-pill">Power Automate</span>
+                        <span class="skill-pill">SharePoint List</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Operating Systems</h3>
+                    <div class="skills-list">
+                        <span class="skill-pill">Linux</span>
+                        <span class="skill-pill">Windows</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-container">
+                <div class="education-item">
+                    <h3>BCA, Computer and Information Sciences</h3>
+                    <h4>ISBA INSTITUTE OF PROFESSIONAL STUDIES</h4>
+                    <p>07/2021 - 06/2024</p>
+                </div>
+                
+                <div class="education-item">
+                    <h3>Science, PCM</h3>
+                    <h4>Kendriya Vidyalaya</h4>
+                    <p>Completed in 07/2021</p>
+                </div>
+                
+                <div class="education-item">
+                    <h3>Certifications</h3>
+                    <p>Python Programming Certificate</p>
+                    <p>Prompt Engineering Certificate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><i>📱</i> 9977113400</p>
+                    <p><i>✉️</i> atulvis2003@gmail.com</p>
+                    <p><i>🔗</i> linkedin.com/in/atul-07b0a3254</p>
+                    <p><i>📍</i> Indore, India</p>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><span>in</span></a>
+                <a href="#"><span>📧</span></a>
+                <a href="#"><span>🐱</span></a>
+            </div>
+            <p class="copyright">© 2025 Atul Vishwakarma. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
